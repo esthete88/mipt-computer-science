@@ -10,14 +10,14 @@ int main(int argc, char const *argv[]) {
         pipe(fd);
         pid_t pid = fork();
         if (pid > 0) {
-          close(fd[0]);
-          printf("Hi!\n");
-          exit(0);
+                close(fd[0]);
+                printf("Hi!\n");
+                exit(0);
         } else {
-          close(fd[1]);
-          char buf[512];
-          fgets(buf, sizeof buf, stdin);
-          printf("%s\n", buf);
+                close(fd[1]);
+                char buf[512];
+                fgets(buf, sizeof buf, stdin);
+                printf("%s\n", buf);
         }
         return 0;
 }

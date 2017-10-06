@@ -1,0 +1,10 @@
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp: In function ‘int main(int, const char**)’:
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:14:26: error: ISO C++ forbids declaration of ‘q’ with no type [-fpermissive]
+         for (auto const &q : vargs) {
+                          ^
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:14:30: warning: range-based ‘for’ loops only available with -std=c++11 or -std=gnu++11
+         for (auto const &q : vargs) {
+                              ^
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:15:34: error: request for member ‘c_str’ in ‘q’, which is of non-class type ‘const int’
+                 args.push_back(q.c_str());
+                                  ^

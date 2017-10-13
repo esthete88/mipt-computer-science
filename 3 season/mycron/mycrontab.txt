@@ -1,0 +1,4 @@
+18:00:00 echo hh
+*:*:* echo beep
+*:*:34 echo beebeep
+*:*:* date

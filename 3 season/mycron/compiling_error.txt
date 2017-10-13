@@ -1,10 +1,67 @@
-/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp: In function ‘int main(int, const char**)’:
-/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:14:26: error: ISO C++ forbids declaration of ‘q’ with no type [-fpermissive]
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp: In function ‘int main()’:
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:31:23: error: ‘class std::vector<Task>’ has no member named ‘emplace_back’
+                 tasks.emplace_back(parseToTask(temp));
+                       ^
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:34:19: error: ‘task’ does not name a type
+         for (auto task : tasks) {
+                   ^
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:37:9: error: expected ‘;’ before ‘return’
+         return 0;
+         ^
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:37:9: error: expected primary-expression before ‘return’
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:37:9: error: expected ‘;’ before ‘return’
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:37:9: error: expected primary-expression before ‘return’
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:37:9: error: expected ‘)’ before ‘return’
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp: In function ‘std::vector<std::__cxx11::basic_string<char> > parseStr(std::__cxx11::string, char)’:
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:56:23: error: ‘class std::vector<std::__cxx11::basic_string<char> >’ has no member named ‘emplace_back’
+                 Split.emplace_back(temp);
+                       ^
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:59:15: error: ‘class std::vector<std::__cxx11::basic_string<char> >’ has no member named ‘emplace_back’
+         Split.emplace_back(S);
+               ^
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp: In function ‘Task parseToTask(std::__cxx11::string)’:
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:87:14: error: ‘split’ does not name a type
+         auto split = splitTask(S);
+              ^
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:89:21: error: ‘split’ was not declared in this scope
+         task.line = split[1];
+                     ^
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:90:14: error: ‘time’ does not name a type
+         auto time = parseStr(split[0], ':');
+              ^
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:92:43: warning: pointer to a function used in arithmetic [-Wpointer-arith]
+                 int p = checkSymbol(time[i][0]);
+                                           ^
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:92:46: warning: pointer to a function used in arithmetic [-Wpointer-arith]
+                 int p = checkSymbol(time[i][0]);
+                                              ^
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:92:46: error: invalid conversion from ‘time_t (*)(time_t*) throw () {aka long int (*)(long int*) throw ()}’ to ‘char’ [-fpermissive]
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:40:5: note:   initializing argument 1 of ‘int checkSymbol(char)’
+ int checkSymbol(char c) {
+     ^
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:96:57: warning: pointer to a function used in arithmetic [-Wpointer-arith]
+                                 task.h = strToInt(time[i]);
+                                                         ^
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:96:57: error: could not convert ‘(time + ((sizetype)i))’ from ‘time_t (*)(time_t*) throw () {aka long int (*)(long int*) throw ()}’ to ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:102:57: warning: pointer to a function used in arithmetic [-Wpointer-arith]
+                                 task.m = strToInt(time[i]);
+                                                         ^
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:102:57: error: could not convert ‘(time + ((sizetype)i))’ from ‘time_t (*)(time_t*) throw () {aka long int (*)(long int*) throw ()}’ to ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:108:57: warning: pointer to a function used in arithmetic [-Wpointer-arith]
+                                 task.s = strToInt(time[i]);
+                                                         ^
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:108:57: error: could not convert ‘(time + ((sizetype)i))’ from ‘time_t (*)(time_t*) throw () {aka long int (*)(long int*) throw ()}’ to ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp: In function ‘void launch(std::__cxx11::string)’:
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:118:14: error: ‘vargs’ does not name a type
+         auto vargs = parseStr(S, ' ');
+              ^
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:120:26: error: ISO C++ forbids declaration of ‘q’ with no type [-fpermissive]
          for (auto const &q : vargs) {
                           ^
-/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:14:30: warning: range-based ‘for’ loops only available with -std=c++11 or -std=gnu++11
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:120:30: warning: range-based ‘for’ loops only available with -std=c++11 or -std=gnu++11
          for (auto const &q : vargs) {
                               ^
-/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:15:34: error: request for member ‘c_str’ in ‘q’, which is of non-class type ‘const int’
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:120:30: error: ‘vargs’ was not declared in this scope
+/home/esthete/mipt-computer-science/3 season/mycron/mycron.cpp:121:34: error: request for member ‘c_str’ in ‘q’, which is of non-class type ‘const int’
                  args.push_back(q.c_str());
                                   ^

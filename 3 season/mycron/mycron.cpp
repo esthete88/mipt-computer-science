@@ -27,6 +27,10 @@ void launch(string S);
 
 int main() {
         ifstream file("mycrontab.txt");
+        if (file.fail()) {
+                perror("File doesn't exist");
+                return 0;
+        }
         vector<Task> tasks;
         string temp;
         struct stat buf;
@@ -59,9 +63,9 @@ int main() {
 }
 
 int checkSymbol(char c) {
-        if (c >= 48 && c <= 57) { // number
+        if (c >= (int)('0') && c <= (int)('9')) { // number
                 return 0;
-        } else if (c == 42) { // asterisk
+        } else if (c == (int)('*')) { // asterisk
                 return 1;
         } else { // NaN
                 return -1;

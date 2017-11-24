@@ -18,6 +18,7 @@
 
 const int int0 = (int)('0'); // ascii of 0
 const int int9 = (int)('9'); // ascii of 9
+const int BUFFER_SIZE = 8000;
 
 struct Task {
         std::string src, dst;
@@ -119,34 +120,28 @@ void copyFile(std::string src, std::string dst) {
                 return;
         }
 
-        // obtaining length of the file
-        file.seekg(0, file.end);
-        int length = file.tellg();
-        file.seekg(0, file.beg);
-        if (file.fail()) {
-                perror(("File " + src + " cannot be read").c_str());
-                return;
-        }
-
-        // reading the whole file
-        char *buf = new char [length];
-        file.read(buf, length);
-        if (file.fail()) {
-                perror(("File " + src + " cannot be read").c_str());
-                return;
-        }
-
         std::ofstream newFile(newFilepath, std::ofstream::out);
         if (newFile.fail()) {
                 perror(("File " + src + " cannot be created in destination folder").c_str());
                 return;
         }
 
-        newFile.write(buf, length);
-        if (newFile.fail()) {
-                perror(("File " + src + " cannot be copied").c_str());
-                return;
+        char *buf = new char [BUFFER_SIZE];
+        int size = 1;
+
+        while(size != 0) {
+          size = file.readsome(buf, BUFFER_SIZE);
+          if (file.fail()) {
+                  perror(("File " + src + " cannot be read").c_str());
+                  return;
+          }
+          newFile.write(buf, size);
+          if (newFile.fail()) {
+                  perror(("File " + src + " cannot be copied").c_str());
+                  return;
+          }
         }
+
         file.close();
         newFile.close();
 

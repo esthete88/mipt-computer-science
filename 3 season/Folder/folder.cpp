@@ -9,7 +9,7 @@
 #include <utime.h>
 #include <string>
 
-const int N = 100000;
+const int N = 10;
 
 using namespace std;
 
@@ -18,7 +18,7 @@ int main(int argc, char const *argv[]) {
   mkdir("./pipiska", 0775);
   chdir("./pipiska");
   string S;
-  for (int i = 0; i < 100000; ++i) {
+  for (int i = 0; i < 10000000; ++i) {
     S += "*";
   }
   for (int i = 0; i < N; ++i) {

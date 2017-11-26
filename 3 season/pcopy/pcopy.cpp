@@ -40,7 +40,6 @@ int main(int argc, char const *argv[]) {
         // std::ofstream fout("logfile.txt");
         int threadsNumber;
         std::string dirFrom, dirTo;
-        char *s1 = new char [PATH_MAX], *s2 = new char [PATH_MAX];
         parseArgs(argc, argv, &dirFrom, &dirTo, &threadsNumber);
         if (access(dirFrom.c_str(), 0)) {
                 perror("Source directory does not exist");
@@ -51,10 +50,8 @@ int main(int argc, char const *argv[]) {
                 errno = 0;
                 mkdir(dirTo.c_str(), 0775);
         }
-        realpath(dirFrom.c_str(), s1);
-        realpath(dirTo.c_str(), s2);
-        dirFrom = std::string(s1);
-        dirTo = std::string(s2);
+        dirFrom = std::string(realpath(dirFrom.c_str(), NULL));
+        dirTo = std::string(realpath(dirTo.c_str(), NULL));
         Args args;
         args.taskPos = 0;
         std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
@@ -230,12 +227,14 @@ void makeTasklist(std::string src, std::string dst, std::vector<Task> *tasks) {
                                 perror(("Stat of " + newsrc + " cannot be read").c_str());
                                 continue;
                         }
+
+                        // if file
                         if (S_ISREG(st.st_mode)) {
                                 Task task;
                                 task.src = newsrc;
                                 task.dst = dst + "/" + std::string(entry->d_name);
                                 tasks->push_back(task);
-                        } else if (S_ISDIR(st.st_mode)) {
+                        } else if (S_ISDIR(st.st_mode)) { // if directory
                                 newdst = dst + "/" + std::string(entry->d_name);
                                 makeTasklist(newsrc, newdst, tasks);
                         }

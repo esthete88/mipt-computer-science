@@ -18,16 +18,16 @@
 
 const int int0 = (int)('0'); // ascii of 0
 const int int9 = (int)('9'); // ascii of 9
-const int BUFFER_SIZE = 8000;
+const int BUFFER_SIZE = 8192;
 
 struct Task {
         std::string src, dst;
 };
 
 struct Args {
-  std::vector<Task> tasks;
-  unsigned int taskPos, taskSize;
-  std::mutex mutex;
+        std::vector<Task> tasks;
+        unsigned int taskPos, taskSize;
+        std::mutex mutex;
 };
 
 void parseArgs(int argc, char const **argv, std::string *path1, std::string *path2, int *tnum);
@@ -106,6 +106,9 @@ void copyFile(std::string src, std::string dst) {
 
         // checking the filename for existence in the directory-receiver
         if (!access(newFilepath.c_str(), 0)) {
+                if (!access((newFilepath + ".old").c_str(), 0)) {
+                        remove((newFilepath + ".old").c_str());
+                }
                 if (rename(newFilepath.c_str(), (newFilepath + ".old").c_str()) != 0) {
                         perror(("Cannot rename existing " + src).c_str());
                 }
@@ -127,16 +130,16 @@ void copyFile(std::string src, std::string dst) {
         int size = 1;
 
         while(size != 0) {
-          size = file.readsome(buf, BUFFER_SIZE);
-          if (file.fail()) {
-                  perror(("File " + src + " cannot be read").c_str());
-                  return;
-          }
-          newFile.write(buf, size);
-          if (newFile.fail()) {
-                  perror(("File " + src + " cannot be copied").c_str());
-                  return;
-          }
+                size = file.readsome(buf, BUFFER_SIZE);
+                if (file.fail()) {
+                        perror(("File " + src + " cannot be read").c_str());
+                        return;
+                }
+                newFile.write(buf, size);
+                if (newFile.fail()) {
+                        perror(("File " + src + " cannot be copied").c_str());
+                        return;
+                }
         }
 
         file.close();

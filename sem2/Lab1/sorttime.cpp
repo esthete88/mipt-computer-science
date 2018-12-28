@@ -65,7 +65,7 @@ int main() {
 		// 	A[i] = temp;
 		// }
 		time2 = clock() - time1;
-		fout << i << "," << (double)time2/CLOCKS_PER_SEC << endl;
+		fout << i << "," << (double)time2 / CLOCKS_PER_SEC << endl;
 	}
 	fout.close();
 	return 0;
